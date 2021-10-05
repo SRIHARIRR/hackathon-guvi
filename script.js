@@ -1,6 +1,6 @@
 const API_URL = "https://api.jikan.moe/v3/search/anime";
 
-const dateFormatter = (date) => {
+const dateFormater = (date) => {
   let newDate = new Date(date);
   let dd = newDate.getDate();
   let mm = newDate.getMonth() + 1;

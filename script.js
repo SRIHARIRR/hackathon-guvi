@@ -97,11 +97,7 @@ const getSeries = async () => {
   } catch (err) {
     return err;
   }
-};
-
-const initialDataLoad = (input) => {
-  getSeries(input);
-};
+}
 
 let searchContainer = document.getElementById("search-container");
 let searchInput = document.createElement("input");

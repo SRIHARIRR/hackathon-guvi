@@ -53,7 +53,7 @@ const createSeriesList = (seriesDetails) => {
     titleHyperLink.href = data.url;
     titleHyperLink.style.textDecoration = "none";
     titleHyperLink.setAttribute("target", "_blank");
-    let ratingText = document.createTextNode(`IMDB rating: ${data.rated}`);
+    let ratingText = document.createTextNode(`IMDB rating: ${data.score}`);
     let startDateText = document.createTextNode(
       `Start Date: ${dateFormater(data.start_date)}`
     );

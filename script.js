@@ -1,6 +1,6 @@
 const API_URL = "https://api.jikan.moe/v3/search/anime";
 
-const dateFormater = (date) => {
+const dateFormatter = (date) => {
   let newDate = new Date(date);
   let dd = newDate.getDate();
   let mm = newDate.getMonth() + 1;
@@ -22,6 +22,7 @@ const createSeriesList = (seriesDetails) => {
 
   let cardRow = document.createElement("div");
   cardRow.setAttribute("class", "row");
+  row.innerHTML = "";
 
   seriesDetails.map((data) => {
     let cardColumn = document.createElement("div");
@@ -76,39 +77,37 @@ const createSeriesList = (seriesDetails) => {
     type.appendChild(typeText);
     cardRow.append(cardColumn);
   });
-  let contDiv = document.getElementById('cont');
   seriesList.appendChild(cardRow);
-  document.body.append(seriesList);
+  row.append(seriesList);
 };
 
 const getSeries = async () => {
-  console.log("nbbnn:");
-  let response = await fetch(`${API_URL}?q=${document.getElementById('search-input').value}`);
-  response
-    .json()
-    .then((res) => {
-      console.log(res.results);
-      createSeriesList(res.results);
-    })
-    .catch((err) => {
-      console.log("err:", err);
-    });
+  try {
+    let response = await fetch(
+      `${API_URL}?q=${document.getElementById("search-input").value}`
+    );
+    response
+      .json()
+      .then((res) => {
+        createSeriesList(res.results);
+      })
+      .catch((err) => {
+        return err;
+      });
+  } catch (err) {
+    return err;
+  }
 };
 
 const initialDataLoad = (input) => {
   getSeries(input);
 };
 
-let searchContainer = document.createElement("div");
-searchContainer.setAttribute("class", "search-container");
+let searchContainer = document.getElementById("search-container");
 let searchInput = document.createElement("input");
 searchInput.setAttribute("id", "search-input");
 searchInput.setAttribute("placeholder", "Search series here....");
 searchInput.setAttribute("type", "text");
-searchInput.addEventListener(
-  "change",
-  getSeries
-);
+searchInput.addEventListener("change", getSeries);
 
-searchContainer.appendChild(searchInput);
-document.body.appendChild(searchContainer);
+searchContainer.append(searchInput);

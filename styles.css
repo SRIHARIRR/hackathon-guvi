@@ -39,7 +39,7 @@
     font-size: 20px;
 }
 
-.search-container {
+#search-container {
     height: 60%;
     background-color: dimgrey;
     text-align: center;

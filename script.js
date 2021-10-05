@@ -83,7 +83,7 @@ const createSeriesList = (seriesDetails) => {
 
 const getSeries = async () => {
   console.log("nbbnn:");
-  let response = await fetch(`${API_URL}?q=${document.getElementById('search-input')}`);
+  let response = await fetch(`${API_URL}?q=${document.getElementById('search-input').value}`);
   response
     .json()
     .then((res) => {
